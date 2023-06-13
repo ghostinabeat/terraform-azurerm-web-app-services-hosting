@@ -67,7 +67,7 @@ locals {
   existing_logic_app_workflow     = var.existing_logic_app_workflow
   logic_app_workflow_name         = local.existing_logic_app_workflow.name == "" ? (local.enable_monitoring ? azurerm_logic_app_workflow.webhook[0].name : "") : data.azurerm_logic_app_workflow.existing_logic_app_workflow[0].name
   logic_app_workflow_id           = local.existing_logic_app_workflow.name == "" ? (local.enable_monitoring ? azurerm_logic_app_workflow.webhook[0].id : "") : data.azurerm_logic_app_workflow.existing_logic_app_workflow[0].id
-  logic_app_workflow_callback_url = local.existing_logic_app_workflow.name == "" ? (local.enable_monitoring ? azurerm_logic_app_workflow.webhook[0].access_endpoint : "") : data.azurerm_logic_app_workflow.existing_logic_app_workflow[0].access_endpoint
+  logic_app_workflow_callback_url = local.existing_logic_app_workflow.name == "" ? (local.enable_monitoring ? azurerm_logic_app_trigger_http_request.webhook[0].callback_url : "") : jsondecode(data.azapi_resource_action.existing_logic_app_workflow_callback_url[0].output).value
   monitor_email_receivers         = var.monitor_email_receivers
   monitor_enable_slack_webhook    = var.monitor_enable_slack_webhook
   monitor_slack_webhook_receiver  = var.monitor_slack_webhook_receiver
