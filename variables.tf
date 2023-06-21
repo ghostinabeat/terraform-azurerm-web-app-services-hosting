@@ -281,6 +281,24 @@ variable "cdn_frontdoor_origin_fqdn_override" {
   default     = ""
 }
 
+variable "cdn_frontdoor_enable_waf_logs" {
+  description = "Toggle the Diagnostic Setting to log Web Application Firewall requests"
+  type        = bool
+  default     = true
+}
+
+variable "cdn_frontdoor_enable_access_logs" {
+  description = "Toggle the Diagnostic Setting to log Access requests"
+  type        = bool
+  default     = false
+}
+
+variable "cdn_frontdoor_enable_health_probe_logs" {
+  description = "Toggle the Diagnostic Setting to log Health Probe requests"
+  type        = bool
+  default     = false
+}
+
 variable "enable_dns_zone" {
   description = "Conditionally create a DNS zone"
   type        = bool
