@@ -149,6 +149,32 @@ resource "azurerm_monitor_metric_alert" "memory" {
   tags = local.tags
 }
 
+resource "azurerm_monitor_metric_alert" "exceptions" {
+  count = local.enable_monitoring ? 1 : 0
+
+  name                = "${local.resource_prefix}-exceptions"
+  resource_group_name = local.resource_group.name
+  scopes              = [azurerm_application_insights.web_app_service.id]
+  description         = "Action will be triggered when the number of exceptions exceeds 0"
+  window_size         = "PT5M"
+  frequency           = "PT1M"
+  severity            = 2
+
+  criteria {
+    metric_namespace = "Microsoft.Insights/components"
+    metric_name      = "exceptions/count"
+    aggregation      = "Count"
+    operator         = "GreaterThan"
+    threshold        = 0
+  }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.web_app_service[0].id
+  }
+
+  tags = local.tags
+}
+
 resource "azurerm_monitor_metric_alert" "http" {
   count = local.enable_monitoring ? 1 : 0
 
@@ -187,7 +213,7 @@ resource "azurerm_monitor_metric_alert" "latency" {
   criteria {
     metric_namespace = "Microsoft.Cdn/profiles"
     metric_name      = "TotalLatency"
-    aggregation      = "Average"
+    aggregation      = "Minimum"
     operator         = "GreaterThan"
     threshold        = 1000
   }
