@@ -63,6 +63,10 @@ locals {
     "AppServicePlatformLogs"
   ])
 
+  enable_event_hub                          = var.enable_event_hub
+  enable_logstash_consumer                  = var.enable_logstash_consumer
+  eventhub_export_log_analytics_table_names = var.eventhub_export_log_analytics_table_names
+
   enable_monitoring               = var.enable_monitoring
   existing_logic_app_workflow     = var.existing_logic_app_workflow
   logic_app_workflow_name         = local.existing_logic_app_workflow.name == "" ? (local.enable_monitoring ? azurerm_logic_app_workflow.webhook[0].name : "") : data.azurerm_logic_app_workflow.existing_logic_app_workflow[0].name
