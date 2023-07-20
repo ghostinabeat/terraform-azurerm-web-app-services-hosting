@@ -286,6 +286,24 @@ variable "cdn_frontdoor_origin_fqdn_override" {
   default     = ""
 }
 
+variable "cdn_frontdoor_enable_waf_logs" {
+  description = "Toggle the Diagnostic Setting to log Web Application Firewall requests"
+  type        = bool
+  default     = true
+}
+
+variable "cdn_frontdoor_enable_access_logs" {
+  description = "Toggle the Diagnostic Setting to log Access requests"
+  type        = bool
+  default     = false
+}
+
+variable "cdn_frontdoor_enable_health_probe_logs" {
+  description = "Toggle the Diagnostic Setting to log Health Probe requests"
+  type        = bool
+  default     = false
+}
+
 variable "enable_dns_zone" {
   description = "Conditionally create a DNS zone"
   type        = bool
@@ -442,4 +460,22 @@ variable "existing_logic_app_workflow" {
     name                = ""
     resource_group_name = ""
   }
+}
+
+variable "enable_event_hub" {
+  description = "Send App Service logs to an Event Hub sink"
+  type        = bool
+  default     = false
+}
+
+variable "enable_logstash_consumer" {
+  description = "Create an Event Hub consumer group for Logstash"
+  type        = bool
+  default     = false
+}
+
+variable "eventhub_export_log_analytics_table_names" {
+  description = "List of Log Analytics table names that you want to export to Event Hub. See https://learn.microsoft.com/en-gb/azure/azure-monitor/logs/logs-data-export?tabs=portal#supported-tables for a list of supported tables"
+  type        = list(string)
+  default     = []
 }

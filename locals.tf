@@ -64,6 +64,10 @@ locals {
     "AppServicePlatformLogs"
   ])
 
+  enable_event_hub                          = var.enable_event_hub
+  enable_logstash_consumer                  = var.enable_logstash_consumer
+  eventhub_export_log_analytics_table_names = var.eventhub_export_log_analytics_table_names
+
   enable_monitoring               = var.enable_monitoring
   existing_logic_app_workflow     = var.existing_logic_app_workflow
   logic_app_workflow_name         = local.existing_logic_app_workflow.name == "" ? (local.enable_monitoring ? azurerm_logic_app_workflow.webhook[0].name : "") : data.azurerm_logic_app_workflow.existing_logic_app_workflow[0].name
@@ -103,6 +107,9 @@ locals {
   cdn_frontdoor_host_add_response_headers         = var.cdn_frontdoor_host_add_response_headers
   cdn_frontdoor_remove_response_headers           = var.cdn_frontdoor_remove_response_headers
   cdn_frontdoor_origin_fqdn_override              = var.cdn_frontdoor_origin_fqdn_override != "" ? var.cdn_frontdoor_origin_fqdn_override : local.service_app.default_hostname
+  cdn_frontdoor_enable_waf_logs                   = var.cdn_frontdoor_enable_waf_logs
+  cdn_frontdoor_enable_access_logs                = var.cdn_frontdoor_enable_access_logs
+  cdn_frontdoor_enable_health_probe_logs          = var.cdn_frontdoor_enable_health_probe_logs
 
   ruleset_redirects_id               = length(local.cdn_frontdoor_host_redirects) > 0 ? [azurerm_cdn_frontdoor_rule_set.redirects[0].id] : []
   ruleset_add_response_headers_id    = length(local.cdn_frontdoor_host_add_response_headers) > 0 ? [azurerm_cdn_frontdoor_rule_set.add_response_headers[0].id] : []
