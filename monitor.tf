@@ -85,6 +85,18 @@ resource "azurerm_monitor_action_group" "web_app_service" {
     }
   }
 
+  dynamic "event_hub_receiver" {
+    for_each = local.enable_event_hub ? [0] : []
+
+    content {
+      name                    = "Event Hub"
+      event_hub_name          = azurerm_eventhub.web_app_service
+      event_hub_namespace     = azurerm_eventhub_namespace.web_azurerm_eventhub.web_app_service[0].id
+      subscription_id         = data.azurerm_subscription.current.subscription_id
+      use_common_alert_schema = true
+    }
+  }
+
   dynamic "logic_app_receiver" {
     for_each = local.enable_monitoring || local.existing_logic_app_workflow.name != "" ? [0] : []
 
