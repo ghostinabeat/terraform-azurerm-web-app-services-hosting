@@ -176,8 +176,12 @@ module "azure_web_app_services_hosting" {
     }
   }
 
-  enable_cdn_frontdoor                         = true
   restrict_web_app_service_to_cdn_inbound_only = true
+  # web_app_service_allow_ips_inbound = [
+  #   1.2.3.4/32
+  # ]
+
+  enable_cdn_frontdoor                         = true
   cdn_frontdoor_sku                            = "Standard_AzureFrontDoor"
   enable_cdn_frontdoor_health_probe            = true
   cdn_frontdoor_health_probe_interval          = 30
@@ -207,6 +211,10 @@ module "azure_web_app_services_hosting" {
   cdn_frontdoor_remove_response_headers = [
     "Server",
   ]
+  # cdn_frontdoor_origin_fqdn_override = "my-custom-endpoint.tld"
+  # cdn_frontdoor_origin_host_header_override = "my-custom-host-header.tld"
+  # cdn_frontdoor_origin_http_port  = "8080"
+  # cdn_frontdoor_origin_https_port = "4443"
 }
 ```
 
