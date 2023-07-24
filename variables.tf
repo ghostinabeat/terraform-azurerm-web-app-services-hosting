@@ -185,9 +185,15 @@ variable "enable_cdn_frontdoor" {
 }
 
 variable "restrict_web_app_service_to_cdn_inbound_only" {
-  description = "Restricts access to the Web App by addin an ip restriction rule which only allows 'AzureFrontDoor.Backend' inbound and matches the cdn fdid header. It also creates a network security group that only allows 'AzureFrontDoor.Backend' inbound, and attaches it to the subnet of the web app."
+  description = "Restricts access to the Web App by adding an ip restriction rule which only allows 'AzureFrontDoor.Backend' inbound, and matches the cdn fdid header. It also creates a network security group that only allows 'AzureFrontDoor.Backend' inbound, and attaches it to the subnet of the web app environment."
   type        = bool
   default     = true
+}
+
+variable "web_app_service_allow_ips_inbound" {
+  description = "Restricts access to the Web App by creating a network security group rule that only allow inbound traffic from the provided list of IPs"
+  type        = list(string)
+  default     = []
 }
 
 variable "cdn_frontdoor_sku" {
@@ -284,6 +290,25 @@ variable "cdn_frontdoor_origin_fqdn_override" {
   description = "Manually specify the hostname that the CDN Front Door should target. Defaults to the App Service hostname"
   type        = string
   default     = ""
+}
+
+variable "cdn_frontdoor_origin_host_header_override" {
+  description = "Manually specify the host header that the CDN sends to the target. Defaults to the recieved host header. Set to null to set it to the host_name (`cdn_frontdoor_origin_fqdn_override`)"
+  type        = string
+  default     = ""
+  nullable    = true
+}
+
+variable "cdn_frontdoor_origin_http_port" {
+  description = "The value of the HTTP port used for the CDN Origin. Must be between 1 and 65535. Defaults to 80"
+  type        = number
+  default     = 80
+}
+
+variable "cdn_frontdoor_origin_https_port" {
+  description = "The value of the HTTPS port used for the CDN Origin. Must be between 1 and 65535. Defaults to 443"
+  type        = number
+  default     = 443
 }
 
 variable "cdn_frontdoor_enable_waf_logs" {

@@ -107,6 +107,9 @@ locals {
   cdn_frontdoor_host_add_response_headers         = var.cdn_frontdoor_host_add_response_headers
   cdn_frontdoor_remove_response_headers           = var.cdn_frontdoor_remove_response_headers
   cdn_frontdoor_origin_fqdn_override              = var.cdn_frontdoor_origin_fqdn_override != "" ? var.cdn_frontdoor_origin_fqdn_override : local.service_app.default_hostname
+  cdn_frontdoor_origin_host_header_override       = var.cdn_frontdoor_origin_host_header_override != "" ? var.cdn_frontdoor_origin_host_header_override : null
+  cdn_frontdoor_origin_http_port                  = var.cdn_frontdoor_origin_http_port
+  cdn_frontdoor_origin_https_port                 = var.cdn_frontdoor_origin_https_port
   cdn_frontdoor_enable_waf_logs                   = var.cdn_frontdoor_enable_waf_logs
   cdn_frontdoor_enable_access_logs                = var.cdn_frontdoor_enable_access_logs
   cdn_frontdoor_enable_health_probe_logs          = var.cdn_frontdoor_enable_health_probe_logs
@@ -123,6 +126,7 @@ locals {
   cdn_frontdoor_enable_waf = local.enable_cdn_frontdoor && local.cdn_frontdoor_enable_rate_limiting
 
   restrict_web_app_service_to_cdn_inbound_only = var.restrict_web_app_service_to_cdn_inbound_only
+  web_app_service_allow_ips_inbound            = var.web_app_service_allow_ips_inbound
 
   enable_dns_zone      = var.enable_dns_zone
   dns_zone_domain_name = var.dns_zone_domain_name
