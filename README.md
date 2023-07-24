@@ -1,7 +1,7 @@
 # Azure Web App Service Hosting terraform module
 
-[![Terraform CI](github.com/DFE-Digital/terraform-azurerm-web-app-services-hosting/actions/workflows/continuous-integration-terraform.yml/badge.svg?branch=main)](github.com/DFE-Digital/terraform-azurerm-web-app-services-hosting/actions/workflows/continuous-integration-terraform.yml?branch=main)
-[![GitHub release](github.com/DFE-Digital/terraform-azurerm-web-app-services-hosting/releases)](github.com/DFE-Digital/terraform-azurerm-web-app-services-hosting/releases)
+[![Terraform CI](https://github.com/DFE-Digital/terraform-azurerm-web-app-services-hosting/actions/workflows/continuous-integration-terraform.yml/badge.svg?branch=main)](https://github.com/DFE-Digital/terraform-azurerm-web-app-services-hosting/actions/workflows/continuous-integration-terraform.yml?branch=main)
+[![GitHub release](https://github.com/DFE-Digital/terraform-azurerm-web-app-services-hosting/releases)](https://github.com/DFE-Digital/terraform-azurerm-web-app-services-hosting/releases)
 
 This module creates and manages [Azure Web App Services][1], deployed within an [Azure Virtual Network][2].
 
