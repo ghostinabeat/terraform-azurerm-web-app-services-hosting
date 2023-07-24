@@ -208,10 +208,16 @@ variable "enable_cdn_frontdoor_health_probe" {
   default     = true
 }
 
+variable "cdn_frontdoor_health_probe_protocol" {
+  description = "Use Http or Https"
+  type        = string
+  default     = "Https"
+}
+
 variable "cdn_frontdoor_health_probe_interval" {
   description = "Specifies the number of seconds between health probes."
   type        = number
-  default     = 30
+  default     = 120
 }
 
 variable "cdn_frontdoor_health_probe_path" {
@@ -309,6 +315,12 @@ variable "cdn_frontdoor_origin_https_port" {
   description = "The value of the HTTPS port used for the CDN Origin. Must be between 1 and 65535. Defaults to 443"
   type        = number
   default     = 443
+}
+
+variable "cdn_frontdoor_forwarding_protocol" {
+  description = "Azure CDN Front Door forwarding protocol"
+  type        = string
+  default     = "HttpsOnly"
 }
 
 variable "cdn_frontdoor_enable_waf_logs" {

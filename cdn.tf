@@ -19,7 +19,7 @@ resource "azurerm_cdn_frontdoor_origin_group" "group" {
   dynamic "health_probe" {
     for_each = local.enable_cdn_frontdoor_health_probe ? [0] : []
     content {
-      protocol            = "Https"
+      protocol            = local.cdn_frontdoor_health_probe_protocol
       interval_in_seconds = local.cdn_frontdoor_health_probe_interval
       request_type        = local.cdn_frontdoor_health_probe_request_type
       path                = local.cdn_frontdoor_health_probe_path
@@ -72,7 +72,7 @@ resource "azurerm_cdn_frontdoor_route" "route" {
   cdn_frontdoor_rule_set_ids    = local.ruleset_ids
   enabled                       = true
 
-  forwarding_protocol    = "HttpsOnly"
+  forwarding_protocol    = local.cdn_frontdoor_forwarding_protocol
   https_redirect_enabled = true
   patterns_to_match      = ["/*"]
   supported_protocols    = ["Http", "Https"]
