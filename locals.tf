@@ -15,6 +15,7 @@ locals {
   virtual_network_address_space      = var.virtual_network_address_space
   virtual_network_address_space_mask = element(split("/", local.virtual_network_address_space), 1)
   web_app_service_infra_subnet_cidr  = cidrsubnet(local.virtual_network_address_space, 23 - local.virtual_network_address_space_mask, 0)
+  storage_subnet_cidr                = cidrsubnet(local.virtual_network_address_space, 23 - local.virtual_network_address_space_mask, 5)
 
   service_plan_sku      = var.service_plan_sku
   service_plan_os       = var.service_plan_os
