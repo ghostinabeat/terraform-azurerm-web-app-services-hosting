@@ -17,21 +17,11 @@ resource "azurerm_monitor_diagnostic_setting" "web_app_service" {
     for_each = local.service_diagnostic_setting_types
     content {
       category = enabled_log.value
-
-      retention_policy {
-        enabled = true
-        days    = local.service_log_retention
-      }
     }
   }
 
   metric {
     category = "AllMetrics"
-
-    retention_policy {
-      enabled = true
-      days    = local.service_log_retention
-    }
   }
 }
 

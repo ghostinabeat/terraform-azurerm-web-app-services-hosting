@@ -45,10 +45,6 @@ resource "azurerm_monitor_diagnostic_setting" "logs" {
 
   metric {
     category = "Transaction"
-
-    retention_policy {
-      enabled = false
-    }
   }
 }
 
