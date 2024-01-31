@@ -11,7 +11,7 @@ Example module usage:
 
 ```hcl
 module "azure_web_app_services_hosting" {
-  source  = "github.com/DFE-Digital/terraform-azurerm-web-app-services-hosting?ref=v0.4.0"
+  source  = "github.com/DFE-Digital/terraform-azurerm-web-app-services-hosting?ref=v0.5.0"
 
   environment    = "dev"
   project_name   = "myproject"
@@ -233,9 +233,9 @@ module "azure_web_app_services_hosting" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azapi"></a> [azapi](#provider\_azapi) | 1.10.0 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.81.0 |
-| <a name="provider_dns"></a> [dns](#provider\_dns) | 3.3.2 |
+| <a name="provider_azapi"></a> [azapi](#provider\_azapi) | 1.12.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.89.0 |
+| <a name="provider_dns"></a> [dns](#provider\_dns) | 3.4.0 |
 
 ## Resources
 
@@ -315,6 +315,7 @@ module "azure_web_app_services_hosting" {
 | [azurerm_subnet_network_security_group_association.web_app_service_infra_allow_frontdoor_inbound_only](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_network_security_group_association) | resource |
 | [azurerm_subnet_route_table_association.storage_private_endpoint_subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) | resource |
 | [azurerm_subnet_route_table_association.web_app_service_infra_subnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_route_table_association) | resource |
+| [azurerm_user_assigned_identity.default](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/user_assigned_identity) | resource |
 | [azurerm_virtual_network.default](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
 | [azurerm_windows_web_app.default](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/windows_web_app) | resource |
 | [azapi_resource_action.existing_logic_app_workflow_callback_url](https://registry.terraform.io/providers/Azure/azapi/latest/docs/data-sources/resource_action) | data source |
