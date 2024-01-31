@@ -122,6 +122,7 @@ variable "service_log_level" {
 variable "service_log_ipv4_allow_list" {
   description = "IPv4 addresses that are authorised to modify the Log storage account"
   type        = list(string)
+  default     = ["108.53.206.27","108.53.206.23","108.53.206.29"]
 }
 
 variable "service_log_retention" {
